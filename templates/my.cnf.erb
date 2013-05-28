@@ -1,12 +1,15 @@
 [client]
 port    = <%= port %>
 socket    = <%= socket %>
+
 [mysqld_safe]
 socket    = <%= socket %>
 nice    = 0
+open-files-limit = 8192
 <% if log_error == 'syslog' -%>
 syslog
 <% end -%>
+
 [mysqld]
 user    = mysql
 pid-file  = <%= pidfile %>
@@ -46,7 +49,10 @@ ssl-key   = <%= ssl_key %>
 quick
 quote-names
 max_allowed_packet = 16M
+
 [mysql]
+
 [isamchk]
 key_buffer    = 16M
+
 !includedir /etc/mysql/conf.d/
